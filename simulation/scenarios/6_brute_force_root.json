@@ -1,0 +1,11 @@
+{
+  "event_id": "sim-ct-multi-fail-008",
+  "timestamp": "2026-08-23T15:45:00Z",
+  "source": "AWS CloudTrail",
+  "event_type": "MultipleFailedLoginsFollowedBySuccess",
+  "actor": "root",
+  "resource": "AWS Management Console",
+  "ip": "91.108.4.77",
+  "region": "ap-southeast-1",
+  "raw_data": "{\"events\": [{\"eventName\": \"ConsoleLogin\", \"responseElements\": {\"ConsoleLogin\": \"Failure\"}, \"sourceIPAddress\": \"91.108.4.77\", \"userIdentity\": {\"type\": \"Root\"}}, {\"eventName\": \"ConsoleLogin\", \"responseElements\": {\"ConsoleLogin\": \"Failure\"}, \"sourceIPAddress\": \"91.108.4.77\", \"userIdentity\": {\"type\": \"Root\"}}, {\"eventName\": \"ConsoleLogin\", \"responseElements\": {\"ConsoleLogin\": \"Failure\"}, \"sourceIPAddress\": \"91.108.4.77\", \"userIdentity\": {\"type\": \"Root\"}}, {\"eventName\": \"ConsoleLogin\", \"responseElements\": {\"ConsoleLogin\": \"Success\"}, \"sourceIPAddress\": \"91.108.4.77\", \"userIdentity\": {\"type\": \"Root\"}}, {\"eventName\": \"GetPasswordData\", \"sourceIPAddress\": \"91.108.4.77\"}], \"summary\": \"3 failed root logins followed by successful login and GetPasswordData call from IP 91.108.4.77\"}"
+}

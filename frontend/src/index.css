@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg-primary: #060f1e;
+  --bg-secondary: #0d1d35;
+  --bg-tertiary: #142544;
+  --text-primary: #ccd6f6;
+  --text-secondary: #8892b0;
+  --accent-color: #64ffda;
+  --accent-hover: rgba(100, 255, 218, 0.07);
+  --severity-critical: #ff4d4d;
+  --severity-high: #ff9800;
+  --severity-medium: #ffc107;
+  --severity-low: #4caf50;
+  --border-color: #1a2d4d;
+  --font-main: 'Inter', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Common UI Elements */
+.card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn {
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: var(--font-main);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-solid {
+  background-color: var(--accent-color);
+  color: var(--bg-primary);
+  border: 1px solid var(--accent-color);
+  font-weight: 600;
+}
+
+.btn-solid:hover {
+  background-color: #52e0c4;
+}
+
+.btn-danger {
+  color: var(--severity-critical);
+  border-color: var(--severity-critical);
+}
+.btn-danger:hover {
+  background-color: rgba(255, 77, 77, 0.1);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-critical { background-color: rgba(255, 77, 77, 0.15); color: var(--severity-critical); border: 1px solid var(--severity-critical); }
+.badge-high { background-color: rgba(255, 152, 0, 0.15); color: var(--severity-high); border: 1px solid var(--severity-high); }
+.badge-medium { background-color: rgba(255, 193, 7, 0.15); color: var(--severity-medium); border: 1px solid var(--severity-medium); }
+.badge-low { background-color: rgba(76, 175, 80, 0.15); color: var(--severity-low); border: 1px solid var(--severity-low); }
+
+/* Grid Layout */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}

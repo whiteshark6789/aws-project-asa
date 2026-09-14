@@ -1,0 +1,11 @@
+{
+  "event_id": "sim-evt-12345",
+  "timestamp": "2026-08-23T14:00:00Z",
+  "source": "AWS CloudTrail",
+  "event_type": "ConsoleLogin",
+  "actor": "admin-user",
+  "resource": "AWS Management Console",
+  "ip": "185.12.43.99",
+  "region": "ap-south-1",
+  "raw_data": "{\"userIdentity\": {\"type\": \"IAMUser\", \"principalId\": \"AIDA...\", \"arn\": \"arn:aws:iam::123456789012:user/admin-user\"}, \"eventSource\": \"signin.amazonaws.com\", \"eventName\": \"ConsoleLogin\", \"sourceIPAddress\": \"185.12.43.99\", \"userAgent\": \"Mozilla/5.0...\", \"requestParameters\": null, \"responseElements\": {\"ConsoleLogin\": \"Failure\"}}"
+}

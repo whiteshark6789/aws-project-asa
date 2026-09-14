@@ -1,0 +1,11 @@
+{
+  "event_id": "sim-ct-s3-002",
+  "timestamp": "2026-08-23T14:30:00Z",
+  "source": "AWS CloudTrail",
+  "event_type": "PutBucketPublicAccessBlock",
+  "actor": "dev-user-01",
+  "resource": "arn:aws:s3:::customer-financial-data-prod",
+  "ip": "203.0.113.15",
+  "region": "us-west-2",
+  "raw_data": "{\"userIdentity\": {\"type\": \"IAMUser\", \"userName\": \"dev-user-01\"}, \"eventSource\": \"s3.amazonaws.com\", \"eventName\": \"PutBucketPublicAccessBlock\", \"requestParameters\": {\"bucketName\": \"customer-financial-data-prod\", \"PublicAccessBlockConfiguration\": {\"RestrictPublicBuckets\": false, \"BlockPublicPolicy\": false, \"BlockPublicAcls\": false, \"IgnorePublicAcls\": false}}}"
+}

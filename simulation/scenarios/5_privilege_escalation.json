@@ -1,0 +1,11 @@
+{
+  "event_id": "sim-gd-priv-esc-007",
+  "timestamp": "2026-08-23T15:30:00Z",
+  "source": "Amazon GuardDuty",
+  "event_type": "PrivilegeEscalation:IAMUser/AdministrativePermissions",
+  "actor": "intern-contractor-22",
+  "resource": "arn:aws:iam::123456789012:user/intern-contractor-22",
+  "ip": "104.21.67.201",
+  "region": "eu-west-1",
+  "raw_data": "{\"severity\": 8.5, \"type\": \"PrivilegeEscalation:IAMUser/AdministrativePermissions\", \"resource\": {\"resourceType\": \"AccessKey\", \"accessKeyDetails\": {\"userName\": \"intern-contractor-22\", \"userType\": \"IAMUser\"}}, \"action\": {\"actionType\": \"AWS_API_CALL\", \"awsApiCallAction\": {\"api\": \"AttachUserPolicy\", \"serviceName\": \"iam.amazonaws.com\", \"parameters\": {\"PolicyArn\": \"arn:aws:iam::aws:policy/AdministratorAccess\", \"UserName\": \"intern-contractor-22\"}, \"remoteIpDetails\": {\"ipAddressV4\": \"104.21.67.201\"}}}}"
+}

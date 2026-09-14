@@ -1,0 +1,11 @@
+{
+  "event_id": "sim-ct-data-exfil-009",
+  "timestamp": "2026-08-23T16:00:00Z",
+  "source": "AWS CloudTrail",
+  "event_type": "S3DataExfiltration",
+  "actor": "svc-analytics-pipeline",
+  "resource": "arn:aws:s3:::pii-customer-database-2026",
+  "ip": "45.33.32.156",
+  "region": "us-east-1",
+  "raw_data": "{\"userIdentity\": {\"type\": \"IAMUser\", \"userName\": \"svc-analytics-pipeline\"}, \"eventName\": \"GetObject\", \"eventSource\": \"s3.amazonaws.com\", \"sourceIPAddress\": \"45.33.32.156\", \"requestParameters\": {\"bucketName\": \"pii-customer-database-2026\", \"key\": \"exports/full_customer_dump_2026.csv\"}, \"responseElements\": null, \"additionalEventData\": {\"bytesTransferredOut\": 2147483648}, \"eventTime\": \"2026-08-23T16:00:00Z\", \"awsRegion\": \"us-east-1\", \"userAgent\": \"aws-cli/2.0 Python/3.8 Linux/5.4.0\"}"
+}

@@ -1,0 +1,81 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Generative AI Cloud Security Incident Response
+  AWS SAM Template for Cloud Deployment
+
+Parameters:
+  GeminiApiKey:
+    Type: String
+    Description: API Key for Gemini (If not using Amazon Bedrock)
+    NoEcho: true
+
+Resources:
+  # 1. Serverless API (Replaces local Express app)
+  IncidentResponseApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Cors:
+        AllowMethods: "'GET,POST,OPTIONS'"
+        AllowHeaders: "'content-type'"
+        AllowOrigin: "'*'"
+
+  # 2. DynamoDB Table (Replaces local SQLite)
+  IncidentsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: SecurityIncidents
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+  SecurityEventsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: SecurityEvents
+      AttributeDefinitions:
+        - AttributeName: event_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: event_id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+  # 3. Main Backend Lambda (Replaces local Node server)
+  BackendFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../backend/
+      Handler: src/index.handler # Requires wrapping express with serverless-http
+      Runtime: nodejs22.x
+      Architectures:
+        - x86_64
+      Environment:
+        Variables:
+          DATABASE_PROVIDER: dynamodb
+          AI_PROVIDER: gemini # Could be bedrock
+          GEMINI_API_KEY: !Ref GeminiApiKey
+          INCIDENTS_TABLE: !Ref IncidentsTable
+          EVENTS_TABLE: !Ref SecurityEventsTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref IncidentsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref SecurityEventsTable
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+            RestApiId: !Ref IncidentResponseApi
+
+Outputs:
+  ApiEndpoint:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${IncidentResponseApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"

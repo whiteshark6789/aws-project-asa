@@ -1,0 +1,11 @@
+{
+  "event_id": "sim-gd-crypto-010",
+  "timestamp": "2026-08-23T16:15:00Z",
+  "source": "Amazon GuardDuty",
+  "event_type": "CryptoCurrency:EC2/BitcoinTool.B!DNS",
+  "actor": "i-09876543210abcdef",
+  "resource": "i-09876543210abcdef",
+  "ip": "198.51.100.22",
+  "region": "ap-south-1",
+  "raw_data": "{\"severity\": 7.0, \"type\": \"CryptoCurrency:EC2/BitcoinTool.B!DNS\", \"resource\": {\"instanceDetails\": {\"instanceId\": \"i-09876543210abcdef\", \"instanceType\": \"c5.2xlarge\", \"tags\": [{\"key\": \"Name\", \"value\": \"api-worker-prod-03\"}, {\"key\": \"Environment\", \"value\": \"production\"}]}}, \"action\": {\"actionType\": \"DNS_REQUEST\", \"dnsRequestAction\": {\"domain\": \"pool.minergate.com\", \"blocked\": false}}, \"description\": \"EC2 instance is querying a domain associated with cryptocurrency mining activities.\"}"
+}

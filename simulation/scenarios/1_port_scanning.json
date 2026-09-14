@@ -1,0 +1,11 @@
+{
+  "event_id": "sim-gd-portscan-001",
+  "timestamp": "2026-08-23T14:15:00Z",
+  "source": "Amazon GuardDuty",
+  "event_type": "Recon:EC2/PortProbeUnprotectedPort",
+  "actor": "Unknown (198.51.100.45)",
+  "resource": "i-0abcd1234efgh5678",
+  "ip": "198.51.100.45",
+  "region": "us-east-1",
+  "raw_data": "{\"severity\": 5.0, \"type\": \"Recon:EC2/PortProbeUnprotectedPort\", \"resource\": {\"instanceDetails\": {\"instanceId\": \"i-0abcd1234efgh5678\", \"tags\": [{\"key\": \"Name\", \"value\": \"WebServer-Prod\"}]}}, \"action\": {\"actionType\": \"PORT_PROBE\", \"portProbeAction\": {\"portProbeDetails\": [{\"localPortDetails\": {\"port\": 22, \"portName\": \"SSH\"}, \"remoteIpDetails\": {\"ipAddressV4\": \"198.51.100.45\"}}]}}}"
+}
