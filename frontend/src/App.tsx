@@ -9,7 +9,7 @@ import { PlaybookExporterModal } from './components/PlaybookExporterModal';
 import { ExecutiveReportModal } from './components/ExecutiveReportModal';
 import './App.css';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = import.meta.env.DEV ? 'http://localhost:3001/api' : 'https://aws-project-asa-backend.onrender.com/api';
 
 function useLiveClock() {
   const [time, setTime] = useState(new Date());
