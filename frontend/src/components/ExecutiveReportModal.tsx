@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { Incident } from '../types';
+import { FileText, Printer, X } from 'lucide-react';
 
 const API_URL = import.meta.env.DEV ? 'http://localhost:3001/api' : 'https://aws-project-asa-backend.onrender.com/api';
 
@@ -46,7 +47,7 @@ export const ExecutiveReportModal: React.FC<ExecutiveReportModalProps> = ({ inci
         <div style={{ padding: '18px 24px', background: 'rgba(13,29,53,0.95)', borderBottom: '1px solid rgba(255,255,255,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <h3 style={{ margin: 0, fontSize: '17px', fontWeight: 800, color: '#ffffff', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              📄 CISO Executive Incident Report
+              <FileText size={17} /> CISO Executive Incident Report
             </h3>
             <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64ffda' }}>
               Formal SOC Audit Document · ID: {incident.id}
@@ -59,12 +60,13 @@ export const ExecutiveReportModal: React.FC<ExecutiveReportModalProps> = ({ inci
                 background: 'linear-gradient(135deg, #64ffda, #4db6ac)',
                 color: '#061526',
                 border: 'none',
-                padding: '6px 16px', borderRadius: '6px', fontSize: '12px', fontWeight: 800, cursor: 'pointer'
+                padding: '6px 16px', borderRadius: '6px', fontSize: '12px', fontWeight: 800, cursor: 'pointer',
+                display: 'flex', alignItems: 'center', gap: '6px'
               }}
             >
-              🖨️ Print / Save PDF
+              <Printer size={14} /> Print / Save PDF
             </button>
-            <button onClick={onClose} style={{ background: 'transparent', border: 'none', color: '#8892b0', fontSize: '20px', cursor: 'pointer' }}>✕</button>
+            <button onClick={onClose} style={{ background: 'transparent', border: 'none', color: '#8892b0', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><X size={20} /></button>
           </div>
         </div>
 

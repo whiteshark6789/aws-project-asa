@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { Incident } from '../types';
+import { Wrench, X, Lightbulb, Terminal, Box, Zap, Check, Clipboard } from 'lucide-react';
 
 const API_URL = import.meta.env.DEV ? 'http://localhost:3001/api' : 'https://aws-project-asa-backend.onrender.com/api';
 
@@ -61,13 +62,13 @@ export const PlaybookExporterModal: React.FC<PlaybookExporterModalProps> = ({ in
         <div style={{ padding: '18px 24px', background: 'rgba(13,29,53,0.9)', borderBottom: '1px solid rgba(255,255,255,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <h3 style={{ margin: 0, fontSize: '17px', fontWeight: 800, color: '#ffffff', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              🛠️ Executable Playbook & Code Exporter
+              <Wrench size={17} /> Executable Playbook & Code Exporter
             </h3>
             <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64ffda' }}>
               Incident: {incident.title}
             </p>
           </div>
-          <button onClick={onClose} style={{ background: 'transparent', border: 'none', color: '#8892b0', fontSize: '20px', cursor: 'pointer' }}>✕</button>
+          <button onClick={onClose} style={{ background: 'transparent', border: 'none', color: '#8892b0', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><X size={20} /></button>
         </div>
 
         {/* Content Body */}
@@ -76,8 +77,8 @@ export const PlaybookExporterModal: React.FC<PlaybookExporterModalProps> = ({ in
             <div style={{ textAlign: 'center', padding: '40px', color: '#64ffda' }}>Generating Executable Remediation Snippets...</div>
           ) : playbook ? (
             <>
-              <div style={{ background: 'rgba(13,29,53,0.6)', padding: '12px 16px', borderRadius: '8px', borderLeft: '3px solid #64ffda', fontSize: '13px', color: '#e6f1ff' }}>
-                💡 <strong>Playbook Overview</strong>: {playbook.description}
+              <div style={{ background: 'rgba(13,29,53,0.6)', padding: '12px 16px', borderRadius: '8px', borderLeft: '3px solid #64ffda', fontSize: '13px', color: '#e6f1ff', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Lightbulb size={16} /> <span><strong>Playbook Overview</strong>: {playbook.description}</span>
               </div>
 
               {/* Tabs Bar */}
@@ -88,30 +89,33 @@ export const PlaybookExporterModal: React.FC<PlaybookExporterModalProps> = ({ in
                     style={{
                       padding: '6px 14px', borderRadius: '6px', border: 'none', fontSize: '12px', fontWeight: 700, cursor: 'pointer',
                       background: activeTab === 'cli' ? '#64ffda' : 'rgba(255,255,255,0.05)',
-                      color: activeTab === 'cli' ? '#061526' : '#8892b0'
+                      color: activeTab === 'cli' ? '#061526' : '#8892b0',
+                      display: 'flex', alignItems: 'center', gap: '6px'
                     }}
                   >
-                    💻 AWS CLI Script
+                    <Terminal size={14} /> AWS CLI Script
                   </button>
                   <button
                     onClick={() => setActiveTab('terraform')}
                     style={{
                       padding: '6px 14px', borderRadius: '6px', border: 'none', fontSize: '12px', fontWeight: 700, cursor: 'pointer',
                       background: activeTab === 'terraform' ? '#64ffda' : 'rgba(255,255,255,0.05)',
-                      color: activeTab === 'terraform' ? '#061526' : '#8892b0'
+                      color: activeTab === 'terraform' ? '#061526' : '#8892b0',
+                      display: 'flex', alignItems: 'center', gap: '6px'
                     }}
                   >
-                    🏗️ Terraform HCL
+                    <Box size={14} /> Terraform HCL
                   </button>
                   <button
                     onClick={() => setActiveTab('lambda')}
                     style={{
                       padding: '6px 14px', borderRadius: '6px', border: 'none', fontSize: '12px', fontWeight: 700, cursor: 'pointer',
                       background: activeTab === 'lambda' ? '#64ffda' : 'rgba(255,255,255,0.05)',
-                      color: activeTab === 'lambda' ? '#061526' : '#8892b0'
+                      color: activeTab === 'lambda' ? '#061526' : '#8892b0',
+                      display: 'flex', alignItems: 'center', gap: '6px'
                     }}
                   >
-                    ⚡ AWS Lambda Node.js
+                    <Zap size={14} /> AWS Lambda Node.js
                   </button>
                 </div>
 
@@ -121,10 +125,11 @@ export const PlaybookExporterModal: React.FC<PlaybookExporterModalProps> = ({ in
                     background: copied ? '#81c784' : 'rgba(100,255,218,0.15)',
                     color: copied ? '#061526' : '#64ffda',
                     border: '1px solid rgba(100,255,218,0.3)',
-                    padding: '6px 16px', borderRadius: '6px', fontSize: '12px', fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s'
+                    padding: '6px 16px', borderRadius: '6px', fontSize: '12px', fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s',
+                    display: 'flex', alignItems: 'center', gap: '6px'
                   }}
                 >
-                  {copied ? '✓ Copied to Clipboard!' : '📋 Copy Code'}
+                  {copied ? <><Check size={14} /> Copied to Clipboard!</> : <><Clipboard size={14} /> Copy Code</>}
                 </button>
               </div>
 

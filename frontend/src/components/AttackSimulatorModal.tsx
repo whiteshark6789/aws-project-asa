@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Zap, X, Play, Terminal } from 'lucide-react';
 
 const API_URL = import.meta.env.DEV ? 'http://localhost:3001/api' : 'https://aws-project-asa-backend.onrender.com/api';
 
@@ -91,13 +92,13 @@ export const AttackSimulatorModal: React.FC<AttackSimulatorModalProps> = ({
         <div style={{ padding: '18px 24px', background: 'rgba(13,29,53,0.9)', borderBottom: '1px solid rgba(255,255,255,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 800, color: '#ffffff', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              ⚡ SOC Attack Scenario Simulator
+              <Zap size={18} /> SOC Attack Scenario Simulator
             </h3>
             <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64ffda', opacity: 0.85 }}>
               Inject simulated AWS security events live into the detection & remediation engine
             </p>
           </div>
-          <button onClick={onClose} style={{ background: 'transparent', border: 'none', color: '#8892b0', fontSize: '20px', cursor: 'pointer' }}>✕</button>
+          <button onClick={onClose} style={{ background: 'transparent', border: 'none', color: '#8892b0', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><X size={20} /></button>
         </div>
 
         {/* Content Body */}
@@ -141,10 +142,11 @@ export const AttackSimulatorModal: React.FC<AttackSimulatorModalProps> = ({
                       color: '#061526',
                       fontWeight: 800,
                       fontSize: '12px',
-                      cursor: isSimulating ? 'not-allowed' : 'pointer'
+                      cursor: isSimulating ? 'not-allowed' : 'pointer',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px'
                     }}
                   >
-                    {isSimulating && activeScenario === sc.id ? '⚡ Injecting...' : '▶ Launch Attack'}
+                    {isSimulating && activeScenario === sc.id ? <><Zap size={14} /> Injecting...</> : <><Play size={14} /> Launch Attack</>}
                   </button>
                 </div>
               ))}
@@ -154,8 +156,8 @@ export const AttackSimulatorModal: React.FC<AttackSimulatorModalProps> = ({
           {/* Terminal Output */}
           {logs.length > 0 && (
             <div style={{ background: '#030a16', border: '1px solid rgba(100,255,218,0.2)', borderRadius: '10px', padding: '16px', fontFamily: 'monospace', fontSize: '12px', color: '#64ffda', maxHeight: '180px', overflowY: 'auto' }}>
-              <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '6px', marginBottom: '8px', color: '#8892b0', fontSize: '11px', textTransform: 'uppercase' }}>
-                🖥️ Live Terminal Log Ingestion Stream
+              <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '6px', marginBottom: '8px', color: '#8892b0', fontSize: '11px', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Terminal size={14} /> Live Terminal Log Ingestion Stream
               </div>
               {logs.map((log, idx) => (
                 <div key={idx} style={{ marginBottom: '4px', wordBreak: 'break-all' }}>{log}</div>

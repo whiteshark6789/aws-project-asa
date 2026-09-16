@@ -7,6 +7,7 @@ import { AttackSimulatorModal } from './components/AttackSimulatorModal';
 import { AttackGraph } from './components/AttackGraph';
 import { PlaybookExporterModal } from './components/PlaybookExporterModal';
 import { ExecutiveReportModal } from './components/ExecutiveReportModal';
+import { Shield, Zap, Search, Network, Wrench, FileText } from 'lucide-react';
 import './App.css';
 
 const API_URL = import.meta.env.DEV ? 'http://localhost:3001/api' : 'https://aws-project-asa-backend.onrender.com/api';
@@ -129,7 +130,7 @@ function App() {
       {/* Header */}
       <header className="app-header">
         <div className="header-left">
-          <div className="header-logo">🛡️</div>
+          <div className="header-logo"><Shield size={24} /></div>
           <div>
             <h1>Cloud Security Operations</h1>
             <p className="header-subtitle">AWS Incident Response Platform</p>
@@ -139,9 +140,9 @@ function App() {
           <button
             className="btn btn-solid"
             onClick={() => setIsSimulatorOpen(true)}
-            style={{ padding: '6px 16px', fontSize: '12px', letterSpacing: '0.5px' }}
+            style={{ padding: '6px 16px', fontSize: '12px', letterSpacing: '0.5px', display: 'flex', alignItems: 'center', gap: '6px' }}
           >
-            ⚡ Attack Simulator
+            <Zap size={14} /> Attack Simulator
           </button>
           <div className="live-clock">{now.toLocaleTimeString()}</div>
           <div className="user-info">SOC Analyst</div>
@@ -248,8 +249,8 @@ function App() {
                 <p className="text-secondary">{selectedIncident.source} · {new Date(selectedIncident.timestamp).toLocaleString()}</p>
               </div>
               <div className="details-actions">
-                <button className="btn" onClick={() => setIsPlaybookOpen(true)}>🛠️ Executable Playbook</button>
-                <button className="btn" onClick={() => setIsReportOpen(true)}>📄 CISO Report</button>
+                <button className="btn" style={{ display: 'flex', alignItems: 'center', gap: '6px' }} onClick={() => setIsPlaybookOpen(true)}><Wrench size={14} /> Executable Playbook</button>
+                <button className="btn" style={{ display: 'flex', alignItems: 'center', gap: '6px' }} onClick={() => setIsReportOpen(true)}><FileText size={14} /> CISO Report</button>
                 <span className={`status-pill status-${selectedIncident.status.toLowerCase()}`}>{selectedIncident.status.replace(/_/g, ' ')}</span>
                 {(selectedIncident.status === 'AI_ANALYSIS_FAILED' || selectedIncident.confidence === 0) && (
                   <button className="btn" onClick={() => handleReAnalyze(selectedIncident.id)} disabled={isAnalyzing}>
@@ -264,16 +265,16 @@ function App() {
               <button
                 className={`btn ${detailTab === 'overview' ? 'btn-solid' : ''}`}
                 onClick={() => setDetailTab('overview')}
-                style={{ padding: '8px 20px', borderRadius: '20px' }}
+                style={{ padding: '8px 20px', borderRadius: '20px', display: 'flex', alignItems: 'center', gap: '6px' }}
               >
-                🔍 Incident Overview & Evidence
+                <Search size={14} /> Incident Overview & Evidence
               </button>
               <button
                 className={`btn ${detailTab === 'graph' ? 'btn-solid' : ''}`}
                 onClick={() => setDetailTab('graph')}
-                style={{ padding: '8px 20px', borderRadius: '20px' }}
+                style={{ padding: '8px 20px', borderRadius: '20px', display: 'flex', alignItems: 'center', gap: '6px' }}
               >
-                🕸️ Blast Radius Attack Graph
+                <Network size={14} /> Blast Radius Attack Graph
               </button>
             </div>
 

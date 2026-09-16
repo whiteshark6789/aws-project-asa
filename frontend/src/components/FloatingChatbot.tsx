@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import type { Incident, DashboardStats } from '../types';
+import { Bot, Shield, X, Trash2, Send, ClipboardList, AlertTriangle, BarChart2 } from 'lucide-react';
 import './FloatingChatbot.css';
 
 const API_URL = import.meta.env.DEV ? 'http://localhost:3001/api' : 'https://aws-project-asa-backend.onrender.com/api';
@@ -17,10 +18,10 @@ interface ChatMessage {
 }
 
 const PRESET_QUESTIONS = [
-  '📋 Summarize all present issues',
-  '🚨 Which issue is the most dangerous?',
-  '📊 Show severity breakdown',
-  '🛡️ What top actions should I take?'
+  { text: 'Summarize all present issues', icon: <ClipboardList size={14} /> },
+  { text: 'Which issue is the most dangerous?', icon: <AlertTriangle size={14} /> },
+  { text: 'Show severity breakdown', icon: <BarChart2 size={14} /> },
+  { text: 'What top actions should I take?', icon: <Shield size={14} /> }
 ];
 
 export const FloatingChatbot: React.FC<FloatingChatbotProps> = ({ incidents, stats }) => {
@@ -109,8 +110,8 @@ export const FloatingChatbot: React.FC<FloatingChatbotProps> = ({ incidents, sta
     <div className="floating-chatbot-container">
       {/* Hover Greeting Tooltip */}
       {isHovered && !isOpen && (
-        <div className="chatbot-greeting-tooltip">
-          <span>🤖</span> Hi, I'm ASA! Ask me about active security issues 👋
+        <div className="chatbot-greeting-tooltip" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <Bot size={16} /> Hi, I'm ASA! Ask me about active security issues 👋
         </div>
       )}
 
@@ -122,7 +123,9 @@ export const FloatingChatbot: React.FC<FloatingChatbotProps> = ({ incidents, sta
         onMouseLeave={() => setIsHovered(false)}
         aria-label="Toggle ASA Security Assistant"
       >
-        <span className="chatbot-trigger-icon">{isOpen ? '✕' : '🛡️'}</span>
+        <span className="chatbot-trigger-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {isOpen ? <X size={24} /> : <Shield size={24} />}
+        </span>
         <span className="chatbot-online-dot" />
       </button>
 
@@ -132,7 +135,7 @@ export const FloatingChatbot: React.FC<FloatingChatbotProps> = ({ incidents, sta
           {/* Header */}
           <div className="chatbot-window-header">
             <div className="chatbot-header-info">
-              <div className="chatbot-header-avatar">🤖</div>
+              <div className="chatbot-header-avatar"><Bot size={24} /></div>
               <div className="chatbot-header-title">
                 <h4>
                   ASA Security Assistant
@@ -164,15 +167,17 @@ export const FloatingChatbot: React.FC<FloatingChatbotProps> = ({ incidents, sta
                 className="chatbot-control-btn"
                 onClick={() => setMessages([messages[0]])}
                 title="Clear Chat History"
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
-                🗑️
+                <Trash2 size={16} />
               </button>
               <button
                 className="chatbot-control-btn"
                 onClick={() => setIsOpen(false)}
                 title="Close Chat"
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
-                ✕
+                <X size={16} />
               </button>
             </div>
           </div>
@@ -207,10 +212,11 @@ export const FloatingChatbot: React.FC<FloatingChatbotProps> = ({ incidents, sta
               <button
                 key={idx}
                 className="chatbot-chip-btn"
-                onClick={() => handleSend(q)}
+                onClick={() => handleSend(q.text)}
                 disabled={isThinking}
+                style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
               >
-                {q}
+                {q.icon} {q.text}
               </button>
             ))}
           </div>
@@ -231,8 +237,9 @@ export const FloatingChatbot: React.FC<FloatingChatbotProps> = ({ incidents, sta
               onClick={() => handleSend()}
               disabled={isThinking || !inputMessage.trim()}
               title="Send Message"
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
-              ➤
+              <Send size={16} />
             </button>
           </div>
         </div>
